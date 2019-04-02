@@ -7,6 +7,9 @@
 #include <cstring>
 #include <cassert>
 #include <openssl/sha.h>
+#include <openssl/aes.h>
+#define MSG_LEN 128
+#define AES_BITS 128
 using namespace std;
 struct DataPkg{
     int size;

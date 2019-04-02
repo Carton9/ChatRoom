@@ -5,7 +5,7 @@
 #define JOIN "Sk9JTg=="
 #define ACCEPTED "YWNjZXB0ZWQ="
 using namespace std;
-
+const string charSet="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$^&-=\\][';/.,<>?:*";
 int status; 
             // 0: init state
             // 1: finish init, constucte first handshake, verify private key
@@ -25,5 +25,10 @@ string generatePacket(string chatRoomNumber){
     return packet+RSA.sha256(packet);
 }
 string generateFirstHandshake(string reply){
-    srand (time(NULL));
+    if(secret！=key->decode(replay)){
+        return "fail";
+    }
+    srand(time(NULL));
+    for(int i=0;i<)
+    int rand();
 }
