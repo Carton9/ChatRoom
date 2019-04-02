@@ -12,9 +12,19 @@ struct DataPkg{
     int size;
     char* cData;
 }
-
-int loadKey(const string& fileName, RSA* loadedKey);
-int encode(DataPkg* data,RSA* loadedKey);
-int decode(DataPkg* data,RSA* loadedKey);
-void clear(RSA* loadedKey);
-string sha256(const string input);
+class AuthKey{
+    public:
+        AuthKey(const string fileName);
+        bool isavaliable();
+        int loadKey(const string fileName);
+        int encode(DataPkg* data);
+        int decode(DataPkg* data);
+        string encode(string data);
+        string decode(string data);
+        void clear();
+        static string sha256(const string input);
+        ~AuthKey();
+    private:
+        RSA* loadedKey;
+        int state;
+}
