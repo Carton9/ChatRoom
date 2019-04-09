@@ -1,0 +1,74 @@
+# depslib dependency file v1.0
+1554401122 source:/home/mike/chatRoom2/authkey_test.cpp
+	"AuthKey.h"
+	<string.h>
+
+1554398879 /home/mike/chatRoom2/rsa++.h
+	<iostream>
+	<string>
+	<cstring>
+	<cassert>
+	<openssl/rsa.h>
+	<openssl/err.h>
+	<openssl/pem.h>
+	<openssl/sha.h>
+	<openssl/aes.h>
+	<openssl/rsa.h>
+	<openssl/err.h>
+	<openssl/pem.h>
+
+1554400843 source:/home/mike/chatRoom2/rsa++.cpp
+	"rsa++.h"
+
+1554398879 /home/mike/chatRoom2/AuthKey.h
+	<iostream>
+	<string>
+	<cstring>
+	<cassert>
+	<openssl/rsa.h>
+	<openssl/err.h>
+	<openssl/pem.h>
+	<openssl/sha.h>
+	<openssl/aes.h>
+	<openssl/rsa.h>
+	<openssl/err.h>
+	<openssl/pem.h>
+
+1554404128 source:/home/mike/chatRoom2/AuthKey.cpp
+	"AuthKey.h"
+
+1554773777 source:/home/mike/chatRoom2/src/Auth.cpp
+	"Auth.h"
+
+1554773346 /home/mike/chatRoom2/include/Auth.h
+	"AuthKey.h"
+	<vector>
+
+1554773258 /home/mike/chatRoom2/include/AuthKey.h
+	<iostream>
+	<string>
+	<cstring>
+	<cassert>
+	<openssl/rsa.h>
+	<openssl/err.h>
+	<openssl/pem.h>
+	<openssl/sha.h>
+	<openssl/aes.h>
+	<openssl/rsa.h>
+	<openssl/err.h>
+	<openssl/pem.h>
+
+1554769939 source:/home/mike/chatRoom2/src/AuthKey.cpp
+	"AuthKey.h"
+
+1554610531 source:/home/mike/chatRoom2/src/authkey_test.cpp
+	"AuthKey.h"
+	<string.h>
+	<iostream>
+	<sys/time.h>
+	<cstdlib>
+	<cstdio>
+	<ctime>
+	<cmath>
+	<unistd.h>
+
