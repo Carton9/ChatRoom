@@ -1,4 +1,6 @@
 #include "rsa++.h"
+//using namespace std;
+
 AuthKey::AuthKey(const string fileName){
     state=loadKey(fileName);
 }
@@ -28,10 +30,10 @@ int AuthKey::loadKey(const string fileName){
 }
 string AuthKey::encode(string data){
     DataPkg packet;
-    packet.cData=data.data();
+    packet.cData=(char*)data.data();
     packet.size=data.size();
     encode(&packet);
-    string result(packet.size,packet.cData);
+    string result(packet.cData,packet.size);
     return result;
 }
 int AuthKey::encode(DataPkg* data){
@@ -44,10 +46,10 @@ int AuthKey::encode(DataPkg* data){
 }
 string AuthKey::decode(string data){
     DataPkg packet;
-    packet.cData=data.data();
+    packet.cData=(char*)data.data();
     packet.size=data.size();
     decode(&packet);
-    string result(packet.size,packet.cData);
+    string result(packet.cData,packet.size);
     return result;
 }
 int AuthKey::decode(DataPkg* data){
@@ -64,7 +66,7 @@ int AuthKey::decode(DataPkg* data){
 void AuthKey::clear(){
     RSA_free(loadedKey);
 }
-static string AuthKey::sha256(const string input)
+string AuthKey::sha256(const string input)
 {
 	char buf[2];
     unsigned char hash[SHA256_DIGEST_LENGTH];
@@ -81,38 +83,29 @@ static string AuthKey::sha256(const string input)
 	return NewString;
 }
 
-
-//TODO fix those code
-int aes_encrypt(char* in, char* key, char* out)//, int olen)可能会设置buf长度
-{
-    if(!in || !key || !out) return 0;
-    unsigned char iv[AES_BLOCK_SIZE];           //加密的初始化向量
-    for(int i=0; i<AES_BLOCK_SIZE; ++i)         //iv一般设置为全0,可以设置其他，但是加密解密要一样就行
-        iv[i]='0';                              // 注意字符和数字的区别，key也同样要注意
+string AuthKey::aes_encrypt(string in,string key,string initVector){
+    char* iv;
+    initVector.copy(iv,AES_BLOCK_SIZE,0);
     AES_KEY aes;
-    if(AES_set_encrypt_key((unsigned char*)key, 128, &aes) < 0)
-    {
-        return 0;
+    if(AES_set_encrypt_key((unsigned char*)(key.c_str()), 128, &aes) < 0){
+        return "";
     }
-    int len=strlen(in);
-    //这里的长度是char*in的长度，但是如果in中间包含'\0'字符的话，那么就只会加密前面'\0'前面的一段，所以，这个len可以作为参数传进来，记录in的长度，至于解密也是一个道理，光以'\0'来判断字符串长度，确有不妥，后面都是一个道理。
-
-    AES_cbc_encrypt((unsigned char*)in, (unsigned char*)out, len, &aes, iv, AES_ENCRYPT);
-    return 1;
+    int len=in.size();
+    char* out;
+    AES_cbc_encrypt((unsigned char*)(in.c_str()), (unsigned char*)out, len, &aes, (unsigned char*)(iv), AES_ENCRYPT);
+    string result(out);
+    return result;
 }
-
-int aes_decrypt(char* in, char* key, char* out)
-{
-    if(!in || !key || !out) return 0;
-    unsigned char iv[AES_BLOCK_SIZE];           //加密的初始化向量
-    for(int i=0; i<AES_BLOCK_SIZE; ++i)         //iv一般设置为全0,可以设置其他，但是加密解密要一样就行
-        iv[i]='0';
+string AuthKey::aes_decrypt(string in,string key,string initVector){
+    char* iv;
+    initVector.copy(iv,AES_BLOCK_SIZE,0);
     AES_KEY aes;
-    if(AES_set_decrypt_key((unsigned char*)key, 128, &aes) < 0)
-    {
-        return 0;
+    if(AES_set_encrypt_key((unsigned char*)(key.c_str()), 128, &aes) < 0){
+        return "";
     }
-    int len=strlen(in);
-    AES_cbc_encrypt((unsigned char*)in, (unsigned char*)out, len, &aes, iv, AES_DECRYPT);
-    return 1;
+    int len=in.size();
+    char* out;
+    AES_cbc_encrypt((unsigned char*)(in.c_str()), (unsigned char*)out, len, &aes, (unsigned char*)(iv), AES_DECRYPT);
+    string result(out);
+    return result;
 }
