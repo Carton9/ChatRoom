@@ -1,4 +1,6 @@
 #include <iostream>
+#ifndef AUTHKEY_H
+#define AUTHKEY_H
 #include <string>
 #include <cstring>
 #include <cassert>
@@ -12,7 +14,7 @@
 #include <openssl/pem.h>
 #define RSA_EN_LEN 117
 #define RSA_DC_LEN 128
-#define FAIL "c"
+#define FAIL "fail"
 
 using namespace std;
 struct DataPkg{
@@ -40,3 +42,4 @@ class AuthKey{
         int state;
         bool isPub;
 };
+#endif // AUTHKEY_H

@@ -1,32 +1,30 @@
 #ifndef AUTH_H
 #define AUTH_H
 #include "AuthKey.h"
-#include "MessageGenerator.h"
+#include "MessageManager.h"
+#include "Secret.h"
 #include <vector>
+#include <string>
 
 using namespace std;
 
-class Auth
-{
+class ClientAuth{
     public:
-        Auth();
+        ClientAuth(string username);
         void init(string username);
         string generateFirstHandshake(string chatRoomNumber);
         string generateSecondHandshake(string reply);
+        string encodeMessage(string message){return encodePackage(generator->formateMessage(message));}
         string encodePackage(string packet);
-        vector<message> decodePackage(string packet);
+        vector<Message>* decodePackage(string packet);
         vector<string> splite(string in,char key);
         void finishHandshake(string reply);
         string getUserName(){return userName;}
-        virtual ~Auth();
+        virtual ~ClientAuth();
 
     protected:
 
     private:
-        const string JOIN = "Sk9JTg==";
-        const string HANDSHAKE = "aGFuZHNoYWtlCg==";
-        const string MESSAGE = "bWVzc2FnZQoK==";
-        const string charSet="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#+^&-=\\][';/.,<>?:*";
         int status;
                     // 0: init state
                     // 1: finish init, constucte first handshake, verify private key
@@ -35,11 +33,12 @@ class Auth
                     // 4: auth object init finish, into normal mode
         string userName;
         string password;
-        string sessionSecret;
-        string sessionSecret2;
-        const string secret="SXQgaXMgdmVyeSBzZWNyZXQ=";
+        string sessionSecret_Client;
+        string sessionSecret_Server;
+
         AuthKey* key;
-        string profileFolder="/etc/SCR_config";
+
+        MessageManager* generator;
 };
 
 #endif // AUTH_H

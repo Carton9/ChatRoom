@@ -63,7 +63,7 @@ string AuthKey::encode(string data){
     DataPkg packet;
     int pointer=0;
     string result="";
-    for(int i=0;i<data.size();i++){
+    for(int i=0;i<data.length();i++){
 
         if(i!=0&&i%RSA_EN_LEN==0){
             packet.cData=tmp;
@@ -103,6 +103,7 @@ int AuthKey::encode(DataPkg* data){
     data->cData=encodedData;
     data->size=ret;
     CRYPTO_cleanup_all_ex_data();
+    return 0;
 }
 string AuthKey::decode(string data){
     char tmp[RSA_DC_LEN];
