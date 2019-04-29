@@ -17,7 +17,7 @@ ServerStarter::ServerStarter(){
                 authHead=new ServerAuth(nullptr,files[0],core);
                 for (int i = 1; i < files.size(); i++){
                     if (dependCheck(string(serverFolder)+"/user/"+files[i]+"/PUBKEY")>=R_EN)
-                        (*authHead)<< new ServerAuth(nullptr,files[i],core); 
+                        (*authHead)<< new ServerAuth(nullptr,files[i],core);
                 }
             }
         }
@@ -37,8 +37,8 @@ ServerStarter::ServerStarter(){
         catch(...){
         }
     }
-    
-    
+
+
 }
 void ServerStarter::run(){
     while (core!=nullptr&&socket!=nullptr&&core->manageUser(string("Server"))==3){
@@ -54,12 +54,12 @@ ServerStarter::~ServerStarter()
 {
     //dtor
 }
-int dependCheck(string file){
+int ServerStarter::dependCheck(string file){
     int result=0;
     if(access(file.c_str(), F_OK)==0){
         result+=1;
     }
-    
+
     if(access(file.c_str(), W_OK)==0){
         result+=3;
     }
@@ -90,13 +90,18 @@ vector<string> ServerStarter::getFiles(string searchFolder){
     return files;
 }
 vector<string> ServerStarter::splite(string in,char key){
-    vector<string> result;
-    string section="";
-    for(int i=0;i<in.size();i++){
-        if(in[i]==key){
-            result.push_back(section);
-        }else{
-            section+=in[i];
+    int pos;
+    string pattern="";
+    pattern+=key;
+    std::vector<std::string> result;
+    in+=pattern;
+    int s_size=in.size();
+    for(int i=0; i<s_size; i++){
+        pos=in.find(pattern,i);
+        if(pos<s_size){
+            std::string s=in.substr(i,pos-i);
+            result.push_back(s);
+            i=pos+pattern.size()-1;
         }
     }
     return result;

@@ -1,6 +1,6 @@
-#include <iostream>
 #ifndef AUTHKEY_H
 #define AUTHKEY_H
+#include <iostream>
 #include <string>
 #include <cstring>
 #include <cassert>
@@ -32,6 +32,7 @@ class AuthKey{
         int decode(DataPkg* data);
         string encode(string data);
         string decode(string data);
+        int getState(){return state;}
         void clear();
         static string sha512(const string input);
         string operator<<(const string str){return encode(str);}

@@ -371,8 +371,8 @@ Error CppSocket::recevieUDPData(int length,TransData* data){
         //receive packet from socket
         n = recvfrom(socketfd, buff, DEFAULT_BUFFER_SIZE, 0, (sockaddr *)&remoteAddress, &len);
         if(n==-1&&(errno==EAGAIN||errno==EWOULDBLOCK)) {
-            if(clock()-init>timeout)
-                return TIMEOUT;
+            //if(clock()-init>timeout)
+            //    return TIMEOUT;
         }else if(n==-1){
             return SOCKET_ERROR;// return if socket have error
         }

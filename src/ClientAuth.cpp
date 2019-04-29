@@ -9,7 +9,10 @@ void ClientAuth::init(string username){
     string keyFile=string(profileFolder)+"/user/"+userName+"/KEY";
     key=new AuthKey(keyFile,false);
     generator=new MessageManager(userName);
-    status=0;
+    if(key->getState()==-1)
+        status=-1;
+    else
+        status=0;
 }
 string ClientAuth::generateFirstHandshake(string chatRoomNumber){
     string packet=string(HANDSHAKE)+"$"+userName+"$"+chatRoomNumber+"$"+string(JOIN);
@@ -60,13 +63,18 @@ vector<Message>* ClientAuth::decodePackage(string packet){
     return &result;
 }
 vector<string> ClientAuth::splite(string in,char key){
-    vector<string> result;
-    string section="";
-    for(int i=0;i<in.size();i++){
-        if(in[i]==key){
-            result.push_back(section);
-        }else{
-            section+=in[i];
+    int pos;
+    string pattern="";
+    pattern+=key;
+    std::vector<std::string> result;
+    in+=pattern;
+    int s_size=in.size();
+    for(int i=0; i<s_size; i++){
+        pos=in.find(pattern,i);
+        if(pos<s_size){
+            std::string s=in.substr(i,pos-i);
+            result.push_back(s);
+            i=pos+pattern.size()-1;
         }
     }
     return result;

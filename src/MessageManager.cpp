@@ -8,34 +8,18 @@ MessageManager::MessageManager(string name){
 Message MessageManager::buildMessage(string data){
     struct tm *info;
     time_t rawTime=time(NULL);
-    info = localtime(&rawTime);
-    string time="";
-    time+=(info->tm_year+1900);
-    time+="-";
-    time+=(info->tm_mon+"");
-    time+=(info->tm_mday+"");
-    time+=(info->tm_hour+"");
-    time+=(info->tm_min+"");
-    time+=(info->tm_sec+"");
-    Message ms;
-    ms.name=name;
-    ms.data=time;
-    ms.data=data;
-    return ms;
+    string c_time=ctime(&rawTime);
+    Message* ms=new Message();
+    (*ms).name=name;
+    (*ms).time=c_time.substr(0,c_time.size()-1);
+    (*ms).data=data;
+    return (*ms);
 }
 string MessageManager::formateMessage(string data){
     struct tm *info;
     time_t rawTime=time(NULL);
-    info = localtime(&rawTime);
-    string time="";
-    time+=(info->tm_year+1900);
-    time+="-";
-    time+=(info->tm_mon+"");
-    time+=(info->tm_mday+"");
-    time+=(info->tm_hour+"");
-    time+=(info->tm_min+"");
-    time+=(info->tm_sec+"");
-    string result = name+"$"+time+"$"+data;
+    string c_time=ctime(&rawTime);
+    string result = name+"$"+c_time.substr(0,c_time.size()-1)+"$"+data;
     return result;
 }
 string MessageManager::formateMessage(Message* data){
@@ -71,9 +55,9 @@ vector<Message> MessageManager::divideMessage(vector<string> variable){
            
             try{
                 Message data;
-                data.name=std::stoi(variable[readPointer]);
-                data.data=std::stoi(variable[readPointer+1]);
-                data.time=std::stoi(variable[readPointer+2]);
+                data.name=variable[readPointer];
+                data.data=variable[readPointer+1];
+                data.time=variable[readPointer+2];
                 result.push_back(data);
             }
             catch(...)
@@ -82,6 +66,18 @@ vector<Message> MessageManager::divideMessage(vector<string> variable){
         }
     }
     return result;
+}
+Message MessageManager::unpackMessage(string data){
+    Message info;
+    vector<string> vs=splite(data,'$');
+    if (vs.size()>2)
+    {
+        info.name=vs[0];
+        info.data=vs[0+2];
+        info.time=vs[0+1];
+    }
+    return info;
+
 }
 
 MessageManager::~MessageManager(){

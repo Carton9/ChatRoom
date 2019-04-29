@@ -20,6 +20,7 @@ class ClientAuth{
         vector<string> splite(string in,char key);
         void finishHandshake(string reply);
         string getUserName(){return userName;}
+        int getState(){return status;}
         virtual ~ClientAuth();
 
     protected:

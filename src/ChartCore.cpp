@@ -178,13 +178,18 @@ string ChartCore::executeCommend(ChartRoom* room,string commend){
     }
 }
 vector<string> ChartCore::splite(string in,char key){
-    vector<string> result;
-    string section="";
-    for(int i=0;i<in.size();i++){
-        if(in[i]==key){
-            result.push_back(section);
-        }else{
-            section+=in[i];
+    int pos;
+    string pattern="";
+    pattern+=key;
+    std::vector<std::string> result;
+    in+=pattern;
+    int s_size=in.size();
+    for(int i=0; i<s_size; i++){
+        pos=in.find(pattern,i);
+        if(pos<s_size){
+            std::string s=in.substr(i,pos-i);
+            result.push_back(s);
+            i=pos+pattern.size()-1;
         }
     }
     return result;

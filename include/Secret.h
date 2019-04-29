@@ -11,8 +11,8 @@
 #define ACCEPTED "YWNjZXB0ZWQ="
 #define REJECT "YWNjZXB0ZWQ="
 struct Message{
-    std::string name;
-    std::string time;
-    std::string data;
+    std::string name="";
+    std::string time="";
+    std::string data="";
 };
 #endif

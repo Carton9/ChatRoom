@@ -135,10 +135,10 @@
 	"ChartRoom.h"
 	<ProcessCore.h>
 
-1555289801 source:/home/c/chatRoom2/src/AuthKey.cpp
+1556077562 source:/home/c/chatRoom2/src/AuthKey.cpp
 	"AuthKey.h"
 
-1555524219 /home/c/chatRoom2/include/AuthKey.h
+1556079460 /home/c/chatRoom2/include/AuthKey.h
 	<iostream>
 	<string>
 	<cstring>
@@ -152,7 +152,7 @@
 	<openssl/err.h>
 	<openssl/pem.h>
 
-1555294577 source:/home/c/chatRoom2/src/authkey_test.cpp
+1556208838 source:/home/c/chatRoom2/src/authkey_test.cpp
 	"AuthKey.h"
 	<string.h>
 	<iostream>
@@ -163,21 +163,23 @@
 	<cmath>
 	<unistd.h>
 	<vector>
+	"ClientTUI.h"
+	"CppSocket.h"
 
 1555291019 source:/home/c/chatRoom2/src/ChartRoom.cpp
 	"ChartRoom.h"
 
-1555607917 /home/c/chatRoom2/include/ChartRoom.h
+1555829173 /home/c/chatRoom2/include/ChartRoom.h
 	<vector>
 	<string>
 	"User.h"
 
-1555639951 source:/home/c/chatRoom2/src/ChartCore.cpp
+1556080253 source:/home/c/chatRoom2/src/ChartCore.cpp
 	"ChartCore.h"
 
-1555608661 /home/c/chatRoom2/include/ChartCore.h
+1555833021 /home/c/chatRoom2/include/ChartCore.h
 	"ChartRoom.h"
-	<ProcessCore.h>
+	"ProcessCore.h"
 	<algorithm>
 	"MessageManager.h"
 	"User.h"
@@ -196,16 +198,16 @@
 	<vector>
 	<string>
 
-1555639988 /home/c/chatRoom2/include/Secret.h
+1556123114 /home/c/chatRoom2/include/Secret.h
 	<string>
 
-1555298724 /home/c/chatRoom2/include/ProcessCore.h
+1555830629 /home/c/chatRoom2/include/ProcessCore.h
 	<vector>
 	<string>
 	<map>
 	"Secret.h"
 
-1555639259 /home/c/chatRoom2/include/MessageManager.h
+1556156383 /home/c/chatRoom2/include/MessageManager.h
 	<time.h>
 	<string>
 	<vector>
@@ -213,21 +215,21 @@
 
 1555385216 /home/c/chatRoom2/include/ChartRoomCommend.h
 
-1555295573 source:/home/c/chatRoom2/src/ClientAuth.cpp
+1556080120 source:/home/c/chatRoom2/src/ClientAuth.cpp
 	"ClientAuth.h"
 
-1555291470 /home/c/chatRoom2/include/ClientAuth.h
+1556077625 /home/c/chatRoom2/include/ClientAuth.h
 	"AuthKey.h"
 	"MessageManager.h"
 	"Secret.h"
 	<vector>
 	<string>
 
-1540063023 source:/home/c/chatRoom2/src/CppSocket.cpp
+1556207825 source:/home/c/chatRoom2/src/CppSocket.cpp
 	"CppSocket.h"
 	<time.h>
 
-1539628629 /home/c/chatRoom2/include/CppSocket.h
+1556122165 /home/c/chatRoom2/include/CppSocket.h
 	<stdio.h>
 	<sys/types.h>
 	<sys/socket.h>
@@ -251,17 +253,62 @@
 
 1539981810 /home/c/chatRoom2/include/CppSocketTerm.h
 
-1555609044 source:/home/c/chatRoom2/src/MessageManager.cpp
+1556160784 source:/home/c/chatRoom2/src/MessageManager.cpp
 	"MessageManager.h"
 
-1555639197 source:/home/c/chatRoom2/src/ServerAuth.cpp
+1556080139 source:/home/c/chatRoom2/src/ServerAuth.cpp
 	"ServerAuth.h"
 
-1555609098 /home/c/chatRoom2/include/ServerAuth.h
+1555831728 /home/c/chatRoom2/include/ServerAuth.h
 	"AuthKey.h"
 	"Secret.h"
 	"MessageManager.h"
 	<vector>
 	<string>
 	"ProcessCore.h"
+
+1555608991 source:/home/c/chatRoom2/src/User.cpp
+	"User.h"
+
+1556166656 /home/c/chatRoom2/include/ClientTUI.h
+	<string>
+	<termio.h>
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	"Secret.h"
+	<sys/ioctl.h>
+	<unistd.h>
+	<mutex>
+	<thread>
+	<deque>
+	"MessageManager.h"
+	"ChartRoomCommend.h"
+
+1556080238 source:/home/c/chatRoom2/src/ClientStarter.cpp
+	"ClientStarter.h"
+
+1556078342 /home/c/chatRoom2/include/ClientStarter.h
+	"ClientTUI.h"
+	"ClientAuth.h"
+	"CppSocket.h"
+
+1556165072 source:/home/c/chatRoom2/src/ClientTUI.cpp
+	"ClientTUI.h"
+
+1556080145 source:/home/c/chatRoom2/src/ServerStarter.cpp
+	"ServerStarter.h"
+
+1555833592 /home/c/chatRoom2/include/ServerStarter.h
+	<string>
+	"Secret.h"
+	<stdio.h>
+	<unistd.h>
+	<vector>
+	"ProcessCore.h"
+	"ChartCore.h"
+	"ServerAuth.h"
+	"CppSocket.h"
+	<CppSocketTerm.h>
 
